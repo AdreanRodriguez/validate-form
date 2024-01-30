@@ -22,3 +22,4 @@ Till ert förfogande har ni fått:
 
 Notera att användare som ni pushar till users vid lyckad registrering endast kommer att existera fram tills att ni uppdaterar webbläsaren. Ni kommer inte att kunna spara ner dem ännu. 
 # Validate-form
+# validate-form
