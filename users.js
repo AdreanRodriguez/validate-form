@@ -22,5 +22,9 @@ let users = [
     {
         username: 'toadallyawesome',
         password: 'mushroomkingdom'
+    },
+    {
+        username: ` `,
+        password: ` `
     }
 ];

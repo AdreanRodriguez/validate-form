@@ -57,7 +57,7 @@ function validateLogin(event) {
 
   try {
 
-    if (username === `` || password === ``) { // Om INTE username ELLER password har något skrivet i sig och vi klickar på "Logga In" så kommer felmeddelandet under.
+    if (username === `` || password === ``) { // Om username ELLER password är tomt så skrivs felmeddelandet under ut.
       throw {
         msg: `Du måste fylla i alla fält!`
       }
@@ -130,6 +130,104 @@ function validateRegistration(event) {
 
 }
 
+// function renderCard(character) {
+
+//   const cardRef = document.createElement('div');
+//   cardRef.classList.add('card');
+
+//   let divRef = document.createElement('div');
+//   divRef.classList.add('image-container');
+//   cardRef.appendChild(divRef);
+
+//   const imgRef = document.createElement('img');
+//   imgRef.classList.add('card-image');
+//   imgRef.style.backgroundColor = character.type[0].color;
+//   imgRef.src = character.image;
+//   imgRef.alt = 'Bild på ' + character.name;
+//   divRef.appendChild(imgRef);
+
+//   const spanRef = document.createElement('span');
+//   spanRef.classList.add('index-span');
+//   spanRef.textContent = '#' + character.id;
+//   divRef.appendChild(spanRef);
+
+//   divRef = document.createElement('div');
+//   divRef.classList.add('card-info');
+//   cardRef.appendChild(divRef);
+
+//   let headingRef = document.createElement('h2');
+//   headingRef.textContent = character.name;
+//   divRef.appendChild(headingRef);
+
+//   let textRef = document.createElement('p');
+//   if(character.type.length === 1) {
+//       textRef.textContent = character.type[0].name;
+//   } else {
+//       textRef.textContent = character.type[0].name + ' / ' + character.type[1].name;
+//   }
+//   divRef.appendChild(textRef);
+
+//   divRef = document.createElement('div');
+//   divRef.classList.add('card-stats');
+//   cardRef.appendChild(divRef);
+
+//   headingRef = document.createElement('h3');
+//   headingRef.textContent = 'Base Stats:';
+//   divRef.appendChild(headingRef);
+
+//   const tableRef = document.createElement('table');
+//   tableRef.classList.add('table');
+//   divRef.appendChild(tableRef);
+
+//   let rowRef = document.createElement('tr');
+//   tableRef.appendChild(rowRef);
+
+//   rowRef.appendChild(renderCell('HP', character.stats.hp));
+//   rowRef.appendChild(renderCell('Speed', character.stats.speed));
+
+//   rowRef = document.createElement('tr');
+//   tableRef.appendChild(rowRef);
+
+//   rowRef.appendChild(renderCell('Attack', character.stats.attack));
+//   rowRef.appendChild(renderCell('Special Attack', character.stats.specialAttack));
+
+//   rowRef = document.createElement('tr');
+//   tableRef.appendChild(rowRef);
+
+//   rowRef.appendChild(renderCell('Defense', character.stats.defense));
+//   rowRef.appendChild(renderCell('Special Defense', character.stats.specialDefense));
+
+//   rowRef = document.createElement('tr');
+//   tableRef.appendChild(rowRef);
+
+//   rowRef.appendChild(renderCell('Total', character.stats.total));
+
+//   return cardRef;
+// }
+
+function renderCard(character) {
+  const cardRef = document.createElement('div');
+  cardRef.classList.add('card');
+  cardRef.classList.add(character.Name.toLowerCase().replace(/\s/g, '-')); // Lägger till klass med kortets namn
+
+  const imgRef = document.createElement('img');
+  imgRef.classList.add('card-image');
+  imgRef.src = character.Image;
+  imgRef.alt = 'Bild på ' + character.Name;
+  cardRef.appendChild(imgRef);
+
+  const headingRef = document.createElement('h2');
+  headingRef.textContent = character.Name;
+  cardRef.appendChild(headingRef);
+
+  const textRef = document.createElement('p');
+  textRef.textContent = `Age: ${character.Age}, Occupation: ${character.Occupation}`;
+  cardRef.appendChild(textRef);
+
+  return cardRef;
+}
+
+
 
 function initContent(event) {
   event.preventDefault();
@@ -149,6 +247,17 @@ function initContent(event) {
   // Lägger på en eventlyssnare på knappen som sedan ska köra funktionen logOut.
   const logoutBtnRef = document.querySelector(`#logoutBtn`)
   logoutBtnRef.addEventListener(`click`, logOut)
+
+
+
+  const cartoonCharactersRef = document.querySelector(`#cartoonCharacters`);
+
+  characters.forEach(character => {
+    const characterCard = renderCard(character);
+    cartoonCharactersRef.appendChild(characterCard);
+  });
+
+
 }
 
 
